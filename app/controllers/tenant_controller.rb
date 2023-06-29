@@ -3,7 +3,7 @@ class TenantController < ApplicationController
 
     def index
         @tenant = Tenant.all
-        render json: @tenants
+        render json: @tenant
     end
 
     def show
