@@ -21,6 +21,29 @@ class TenantController < ApplicationController
 
     end
 
+    def update
+        if @tenant.update(tenant_params)
+            render json: @tenant
+        else
+            render json: @tenant.errors, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @tenant.destroy
+        head :mo_content
+    end
+
+    private
+
+    def set_tenant
+        @tenant = Tenant.find(params[:id])
+    end
+
+    def tenant_params
+        params.require(:tenant).permit(:name, :age)
+    end
+
 
 
 
